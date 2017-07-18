@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.chickenkiller.wearethe.todoapp.MainActivity"
+    >
+
+    <TextView
+        android:id="@+id/textview_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ID"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <EditText
+        android:id="@+id/edittext_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:layout_below="@+id/textview_id"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        />
+
+    <TextView
+        android:id="@+id/pw_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PW"
+        android:layout_below="@+id/edittext_id"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        />
+    <EditText
+        android:id="@+id/pw_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:inputType="textWebPassword"
+        android:layout_below="@+id/pw_textview"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_below="@id/pw_edittext"
+        android:layout_centerHorizontal="true"
+        />
+</RelativeLayout>
+
+<!--<android.support.constraint.ConstraintLayout-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--tools:context="com.chickenkiller.wearethe.todoapp.MainActivity">-->
+
+    <!-- 혹시 나중에 쓰지 않을까? 아님 이거기반으로 바꾸지 않을까 -->
+
+
+<!--</android.support.constraint.ConstraintLayout>-->
