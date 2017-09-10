@@ -1,5 +1,6 @@
 package com.chickenkiller.wearethe.todoapp.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.Toast
 import com.chickenkiller.wearethe.todoapp.R
 import com.chickenkiller.wearethe.todoapp.api.ApiManager
 import com.chickenkiller.wearethe.todoapp.api.model.LoginResponse
+import com.chickenkiller.wearethe.todoapp.ui.activity.TodoActivity
 import com.chickenkiller.wearethe.todoapp.ui.base.BaseFragment
 import retrofit2.Call
 import retrofit2.Callback
@@ -48,21 +50,33 @@ class LoginFragment : BaseFragment() {
         var request = apiManager.service.login(idEditText?.text.toString(), pwEditText?.text.toString())
         request.enqueue(object : Callback<LoginResponse> {
             override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
-                Toast.makeText(this@LoginFragment.activity, "Login fail!!!!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@LoginFragment.activity,
+                        "Login fail!!!!",
+                        Toast.LENGTH_LONG).show()
                 Log.d("@YJ", t.toString())
             }
 
             override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?) {
                 response?.let {
                     if (it.isSuccessful) {
-                        Toast.makeText(this@LoginFragment.activity, "Login Success!!!!", Toast.LENGTH_LONG).show()
+                        goTodoActivity()
+                        Toast.makeText(this@LoginFragment.activity,
+                                "Login Success!!!!",
+                                Toast.LENGTH_LONG).show()
                     } else {
-                        Toast.makeText(this@LoginFragment.activity, "Login fail!!!!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@LoginFragment.activity,
+                                "Login fail!!!!",
+                                Toast.LENGTH_LONG).show()
                     }
 
                     Log.d("@YJ", response.body().toString())
                 }
             }
         })
+    }
+
+    fun goTodoActivity() {
+        val intent = Intent(activity, TodoActivity::class.java)
+        startActivity(intent)
     }
 }
