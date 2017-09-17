@@ -1,11 +1,8 @@
 package com.chickenkiller.wearethe.todoapp.api
 
-import com.chickenkiller.wearethe.todoapp.api.interfaces.ChickingTodoInterface
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import com.google.gson.GsonBuilder
-import com.google.gson.Gson
-
 
 
 /**
@@ -16,7 +13,7 @@ class ApiManager {
 
     var baseUrl: String = "https://wearethe.chickenkiller.com/todo/api/"
     var retrofit: Retrofit
-    var service: ChickingTodoInterface
+    var service: ApiInterface
     var apiDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 
     init {
@@ -25,7 +22,7 @@ class ApiManager {
                 .create()
         retrofit = Retrofit.Builder().baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create(gson)).build()
-        service = retrofit.create(ChickingTodoInterface::class.java)
+        service = retrofit.create(ApiInterface::class.java)
     }
 
 

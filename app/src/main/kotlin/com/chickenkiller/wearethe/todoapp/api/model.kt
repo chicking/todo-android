@@ -12,6 +12,30 @@ data class User (var _id: Long, var updated_at: Date, var name: String, var crea
     }
 }
 
+data class Todo (var _id: String,
+                 var content: String,
+                 var done: Boolean,
+                 var user_id: Long,
+                 var updated_at: Date,
+                 var created_at: Date) {
+    override fun toString(): String {
+        return "Todo(_id='$_id', content='$content', done=$done, user_id=$user_id, " +
+                "updated_at=$updated_at, created_at=$created_at)"
+    }
+}
+
+data class TodoList (var todos: List<Todo>) {
+    override fun toString(): String {
+
+        var content = ""
+        for (todo in this.todos) {
+            content += "$todo\n"
+        }
+
+        return "TodoList(todos=$content)"
+    }
+}
+
 data class LoginResponse(var token : String, var user : User) {
     override fun toString(): String {
         return "LoginResponse(token='$token', user=$user)"
