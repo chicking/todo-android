@@ -24,7 +24,8 @@ class TodoContentAdapter : RecyclerView.Adapter<TodoItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): TodoItemViewHolder {
         parent?.let {
-            val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_todo, null)
+            val itemView = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.list_item_todo, parent, false)
             return TodoItemViewHolder(itemView)
         } ?: throw IllegalStateException("holder creation failure!!!!")
     }

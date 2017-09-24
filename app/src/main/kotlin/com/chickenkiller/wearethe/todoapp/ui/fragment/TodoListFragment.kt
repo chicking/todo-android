@@ -2,6 +2,7 @@ package com.chickenkiller.wearethe.todoapp.ui.fragment
 
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -28,7 +29,7 @@ class TodoListFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater?,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        var view = inflater?.inflate(R.layout.fragment_todo_list, null)
+        val view = inflater?.inflate(R.layout.fragment_todo_list, null)
         view?.let {
             initView(view)
         }
@@ -48,10 +49,15 @@ class TodoListFragment : BaseFragment() {
         todoRecyclerView?.let {
             it.layoutManager = LinearLayoutManager(activity)
             it.adapter = todoAdapter
+            it.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
 
             refershLayout?.isRefreshing = true
             requestGetTodoList()
 
+        }
+
+        view.findViewById(R.id.add_todo_btn)?.setOnClickListener {
+            addTodo()
         }
     }
 
@@ -82,6 +88,10 @@ class TodoListFragment : BaseFragment() {
                 refershLayout?.isRefreshing = false
             }
         })
+    }
+
+    fun addTodo() {
+        //TODO: add todo item
     }
 
 

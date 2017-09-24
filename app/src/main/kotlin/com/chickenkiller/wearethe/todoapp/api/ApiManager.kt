@@ -1,6 +1,5 @@
 package com.chickenkiller.wearethe.todoapp.api
 
-import android.os.Debug
 import com.chickenkiller.wearethe.todoapp.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
