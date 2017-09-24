@@ -22,25 +22,25 @@ interface ApiInterface {
     fun registerAccount(@Field("id") id: String,
                         @Field("password") password: String) : Call<LoginResponse>
 
-    @GET("/me")
+    @GET("me")
     fun myInfo(@Header("Authorization") token: String) : Call<User>
 
-    @GET("/todo")
+    @GET("todo")
     fun getTodoList(@Header("Authorization") token: String) : Call<TodoList>
 
     @FormUrlEncoded
-    @POST("/todo")
+    @POST("todo")
     fun createTodo(@Header("Authorization") token: String,
                    @Field("content") content: String) : Call<Todo>
 
     @FormUrlEncoded
-    @PUT("/todo/{id}")
+    @PUT("todo/{id}")
     fun updateTodo(@Header("Authorization") token: String,
                    @Path("id") id: String,
                    @Field("content") content: String,
                    @Field("done") done: Boolean) : Call<Todo>
 
-    @DELETE("/todo/{id}")
+    @DELETE("todo/{id}")
     fun deleteTodo(@Header("Authorization") token: String,
                    @Path("id") id: String) : Call<Todo>
 }

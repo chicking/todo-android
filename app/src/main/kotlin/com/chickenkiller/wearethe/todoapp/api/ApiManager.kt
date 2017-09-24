@@ -1,8 +1,12 @@
 package com.chickenkiller.wearethe.todoapp.api
 
+import android.os.Debug
+import com.chickenkiller.wearethe.todoapp.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import com.google.gson.GsonBuilder
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 
 
 /**
@@ -20,8 +24,22 @@ class ApiManager {
         val gson = GsonBuilder()
                 .setDateFormat(apiDateFormat)
                 .create()
-        retrofit = Retrofit.Builder().baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create(gson)).build()
+
+        val retrofitBuilder = Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+
+        if (BuildConfig.DEBUG) {
+            val logging = HttpLoggingInterceptor()
+            logging.level = HttpLoggingInterceptor.Level.BODY
+            val client = OkHttpClient.Builder()
+                    .addInterceptor(logging)
+                    .build()
+            retrofitBuilder.client(client)
+        }
+
+        retrofit = retrofitBuilder.build()
+
         service = retrofit.create(ApiInterface::class.java)
     }
 

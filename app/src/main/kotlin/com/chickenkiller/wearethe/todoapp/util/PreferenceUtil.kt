@@ -20,9 +20,9 @@ class PreferenceUtil {
 
         fun setAuthToken(token: String) = pref?.edit()?.putString(PREF_ACCESS_TOKEN, token)?.apply()
 
-        fun getAuthToken(): String? {
+        fun getAuthToken(): String {
             var token = pref?.let { it.getString(PREF_ACCESS_TOKEN, "") } ?: ""
-            return if (token.isNotEmpty()) "Bearer:" + token else null
+            return if (token.isNotEmpty()) "Bearer:" + token else ""
         }
     }
 }

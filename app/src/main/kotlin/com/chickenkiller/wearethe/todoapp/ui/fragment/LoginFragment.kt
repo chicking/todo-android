@@ -13,6 +13,7 @@ import com.chickenkiller.wearethe.todoapp.api.ApiManager
 import com.chickenkiller.wearethe.todoapp.api.model.LoginResponse
 import com.chickenkiller.wearethe.todoapp.ui.activity.TodoActivity
 import com.chickenkiller.wearethe.todoapp.ui.base.BaseFragment
+import com.chickenkiller.wearethe.todoapp.util.PreferenceUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -59,15 +60,22 @@ class LoginFragment : BaseFragment() {
             override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?) {
                 response?.let {
                     if (it.isSuccessful) {
-                        goTodoActivity()
-                        Toast.makeText(this@LoginFragment.activity,
-                                "Login Success!!!!",
-                                Toast.LENGTH_LONG).show()
-                    } else {
-                        Toast.makeText(this@LoginFragment.activity,
-                                "Login fail!!!!",
-                                Toast.LENGTH_LONG).show()
+
+                        response.body()?.token?.let {
+                            PreferenceUtil.setAuthToken(it)
+                            goTodoActivity()
+                            Toast.makeText(this@LoginFragment.activity,
+                                    "Login Success!!!!",
+                                    Toast.LENGTH_LONG).show()
+                        }
+
+                        return
                     }
+
+                    Toast.makeText(this@LoginFragment.activity,
+                            "Login fail!!!!",
+                            Toast.LENGTH_LONG).show()
+
 
                     Log.d("@YJ", response.body().toString())
                 }
